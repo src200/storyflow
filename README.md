@@ -4,8 +4,9 @@ This repo uses [turborepo](https://turborepo.org/) as monorepo manager and [pnpm
 
 ### Apps and Packages
 
-- `storyflow-home`: a [Next.js](https://nextjs.org) app that contains Storyflow's landing pages.
-- `storyflow-app`: another [Next.js](https://nextjs.org) app that contains Storyflow's editor and dashboard.
+- `home`: a [Next.js](https://nextjs.org) app that contains Storyflow's landing pages.
+- `app`: another [Next.js](https://nextjs.org) app that contains Storyflow's dashboard and widget integration.
+- `studio`: another [Next.js](https://nextjs.org) app that contains canvas based WYSIWYG editor.
 
 - `storyflow-widget`: a Typescript library that contains Storyflow's widget code.
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
