@@ -80,24 +80,6 @@ iframe.onload = () => {
         .catch(err => console.log(err));
 }
 
-const loader = <HTMLDivElement>createElement({
-    attributes: {
-        id: 'loader'
-    },
-    styles: {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)'
-    },
-    innerHTML: `
-        <p>
-            Loading stories..
-        </p>
-    `
-})
-
 // create overlay
 function createOverlay(): HTMLDivElement {
     const storyPlayerLinks = media.filter(m => m.type === 'amp-story');
@@ -133,6 +115,9 @@ function createOverlay(): HTMLDivElement {
                             {
                                 "name": "close",
                                 "position": "end"
+                            },
+                            {
+                                "name": "skip-to-next"
                             }
                         ]
                     }
@@ -161,8 +146,9 @@ function createOverlay(): HTMLDivElement {
                         left: 0;
                         right: 0;
                         margin: auto;
-                        height: 700px;
-                        width: 420px;
+                        aspect-ratio: 9 / 16;
+                        height: 680px;
+                        width: 400px;
                         border-radius: 25px;
                         background: rgba(0, 0, 0, 0.8)
                     }
