@@ -1,5 +1,4 @@
 import '@styles/globals.css';
-import '@styles/tailwind.css'
 
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Layout from '@components/Layout';
