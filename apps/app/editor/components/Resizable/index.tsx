@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { flushSync } from 'react-dom';
+// import { flushSync } from 'react-dom';
 
 import { Resizer, Direction } from './resizer';
 
@@ -141,7 +141,7 @@ const isTouchEvent = (event: MouseEvent | TouchEvent): event is TouchEvent => {
 const isMouseEvent = (event: MouseEvent | TouchEvent): event is MouseEvent => {
   return Boolean(
     ((event as MouseEvent).clientX || (event as MouseEvent).clientX === 0) &&
-      ((event as MouseEvent).clientY || (event as MouseEvent).clientY === 0),
+    ((event as MouseEvent).clientY || (event as MouseEvent).clientY === 0),
   );
 };
 
@@ -349,9 +349,9 @@ export class Resizable extends React.PureComponent<ResizableProps, State> {
 
   public static defaultProps = {
     as: 'div',
-    onResizeStart: () => {},
-    onResize: () => {},
-    onResizeStop: () => {},
+    onResizeStart: () => { },
+    onResize: () => { },
+    onResizeStop: () => { },
     enable: {
       top: true,
       right: true,
@@ -848,9 +848,9 @@ export class Resizable extends React.PureComponent<ResizableProps, State> {
     }
 
     // For v18, update state sync
-    flushSync(() => {
-      this.setState(newState);
-    });
+    // flushSync(() => {
+    //   this.setState(newState);
+    // });
 
     if (this.props.onResize) {
       this.props.onResize(event, direction, this.resizable, delta);
