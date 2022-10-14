@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite -p 6010",
+    "dev": "vite --port 6010",
     "build": "vite build",
     "preview": "vite preview"
   },
