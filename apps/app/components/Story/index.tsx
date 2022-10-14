@@ -1,6 +1,6 @@
 import styles from './Story.module.css';
 import Icon from '@components/Icon';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import cn from 'classnames';
 
 interface StoryProps {
@@ -43,7 +43,7 @@ function Story({ className, children, showNavigation = false }: StoryProps) {
             <div className={styles.content} onClick={handleClick}>
                 {showNavigation && <Icon type="chevron-left" size={48} onClick={() => navigateTo('prev')} />}
                 <ul className={styles.pages}>
-                    {pages.current.filter((_, i) => i === currentPage)}
+                    {pages.current.filter((_, i) => i === currentPage) as ReactNode}
                 </ul>
                 {showNavigation && <Icon type="chevron-right" size={48} onClick={() => navigateTo('next')} />}
             </div>
