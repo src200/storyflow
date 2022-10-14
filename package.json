@@ -23,13 +23,8 @@
     "node": ">=14.0.0"
   },
   "packageManager": "pnpm@7.13.4",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "{*.tsx, *.jsx, *.ts, *.js}": [
+    "*.{tsx, jsx, ts, js}": [
       "pnpm run lint --fix --quiet"
     ]
   }
