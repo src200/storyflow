@@ -9,7 +9,8 @@
     "dev": "webpack serve --port 6010",
     "watch": "webpack --watch",
     "build": "webpack --mode=production",
-    "prepublishOnly": "npm run build"
+    "tsc": "tsc",
+    "prepublishOnly": "npm run tsc && npm run build"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.39.0",
