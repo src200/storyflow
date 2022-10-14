@@ -1,5 +1,6 @@
 import '@styles/globals.css';
 
+import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Layout from '@components/Layout';
 import NextNProgress from 'nextjs-progressbar';
@@ -18,10 +19,12 @@ import NextNProgress from 'nextjs-progressbar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <NextNProgress color="#ff7e1d" height={4} startPosition={0.2} options={{ showSpinner: false }} />
-      <Component {...pageProps} />
-    </Layout>
+    <ChakraProvider>
+      <Layout>
+        <NextNProgress color="#ff7e1d" height={4} startPosition={0.2} options={{ showSpinner: false }} />
+        <Component {...pageProps} />
+      </Layout>
+    </ChakraProvider>
   )
 }
 
