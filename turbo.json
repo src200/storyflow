@@ -2,8 +2,13 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
     },
     "lint": {
       "outputs": []
@@ -11,5 +16,10 @@
     "dev": {
       "cache": false
     }
-  }
+  },
+  "globalDependencies": [
+    "$NEXT_PUBLIC_SUPABASE_URL",
+    "$NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "$NEXT_PUBLIC_STORYFLOW_WIDGET"
+  ]
 }
