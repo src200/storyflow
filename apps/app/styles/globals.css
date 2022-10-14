@@ -22,6 +22,35 @@ a {
   height: 100%;
 }
 
+.react-colorful__saturation-pointer {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 0 !important;
+}
+
+.react-colorful__hue {
+  height: 20px !important;
+  margin-top: 0.5rem;
+  border-radius: 0 !important;
+}
+
+.react-colorful__pointer .react-colorful__hue-pointer {
+  width: 20px;
+  height: 20px;
+  border-radius: 0 !important;
+}
+
+
+.react-colorful__hue .react-colorful__hue-pointer {
+  width: 20px;
+  height: 20px;
+  border-radius: 0 !important;
+}
+
+.react-player video {
+  max-height: 740px;
+}
+
 :root {
   --primary-color: #ff7e1d;
   --secondary-color: #F7EDDF;

@@ -17,6 +17,7 @@ export default function Layout({ children }: LayoutProps) {
   const router = useRouter();
   const [authenticatedState, setAuthenticatedState] = useState<string>('not-authenticated');
   const [userEmail, setUserEmail] = useState<string>();
+  const [isEditor, setIsEditor] = useState<boolean>();
 
   useEffect(() => {
     /* fires when a user signs in or out */
@@ -33,6 +34,10 @@ export default function Layout({ children }: LayoutProps) {
     });
 
     checkUser();
+
+    if (router && router.asPath.includes('editor')) {
+      setIsEditor(true);
+    }
 
     return () => {
       authListener && authListener.unsubscribe();
@@ -59,20 +64,25 @@ export default function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className={styles.layout}>
-      <title>Storyflow</title>
-      <Header authState={authenticatedState} email={userEmail} />
-      <main className={styles.main}>
-        <div className={styles.container}>
-          {children}
+    <>
+      {!isEditor && (
+        <div className={styles.layout}>
+          <title>Storyflow</title>
+          <Header authState={authenticatedState} email={userEmail} />
+          <main className={styles.main}>
+            <div className={styles.container}>
+              {children}
+            </div>
+          </main>
+          <ToastContainer toastClassName={styles.toastify} />
+          <Footer />
+          <div className={styles.tryIt}>
+            <Image src="/try-it-out.svg" alt="try it out" width={100} height={100} />
+          </div>
+          <Script id="storyflow-script" src={process.env.NEXT_PUBLIC_STORYFLOW_WIDGET} />
         </div>
-      </main>
-      <ToastContainer toastClassName={styles.toastify} />
-      <Footer />
-      <div className={styles.tryIt}>
-        <Image src="/try-it-out.svg" alt="try it out" width={100} height={100} />
-      </div>
-      <Script id="storyflow-script" src={process.env.NEXT_PUBLIC_STORYFLOW_WIDGET} />
-    </div>
+      )}
+      {isEditor && children}
+    </>
   )
 }
