@@ -13,6 +13,9 @@
     "lint": {
       "outputs": []
     },
+    "tsc": {
+      "outputs": []
+    },
     "dev": {
       "cache": false
     }
