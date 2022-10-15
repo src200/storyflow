@@ -1,10 +1,30 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { styletron } from '../styletron';
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return initialProps;
+  static async getInitialProps(context: DocumentContext) {
+    // const initialProps = await Document.getInitialProps(ctx)
+    // return initialProps;
+    const renderPage = () =>
+      context.renderPage({
+        enhanceApp: (App) => (props) =>
+        (
+          <StyletronProvider value={styletron}>
+            <App {...props} />
+          </StyletronProvider>
+        ),
+      });
+
+    const initialProps = await Document.getInitialProps({
+      ...context,
+      renderPage,
+    });
+
+    const stylesheets = styletron.getStylesheets() || [];
+    return { ...initialProps, stylesheets };
   }
+
   render() {
     return (
       <Html>
@@ -26,6 +46,15 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet" />
+          {this.props.stylesheets.map((sheet, i) => (
+            <style
+              className="_styletron_hydrate_"
+              dangerouslySetInnerHTML={{ __html: sheet.css }}
+              media={sheet.attrs.media}
+              data-hydrate={sheet.attrs['data-hydrate']}
+              key={i}
+            />
+          ))}
         </Head>
         <body>
           <Main />
