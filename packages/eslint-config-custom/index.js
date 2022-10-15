@@ -1,7 +1,12 @@
 module.exports = {
-  extends: ["next", "turbo", "prettier"],
+  extends: [
+    "next",
+    "turbo",
+    "prettier",
+    "plugin:baseui/recommended"
+  ],
   rules: {
-    "@next/next/no-html-link-for-pages": "off",
-    "react/jsx-key": "off",
+    '@next/next/no-html-link-for-pages': "off",
+    'react/jsx-key': "off"
   },
 };
