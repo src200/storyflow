@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
+    "baseUrl": ".",
     "paths": {
       "@styles/*": [
         "./styles/*"
@@ -23,8 +25,6 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
     "next.config.js",
   ],
   "exclude": [

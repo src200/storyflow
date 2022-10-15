@@ -1,3 +1,4 @@
+import React from 'react';
 import Provider from "./Provider"
 import Container from "./Container"
 import DesignEditor from "./views/DesignEditor"
