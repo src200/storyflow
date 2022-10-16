@@ -6,6 +6,7 @@ import VideoEditor from "./VideoEditor"
 import useDesignEditorContext from "../../hooks/useDesignEditorContext"
 import Preview from "./components/Preview"
 import ContextMenu from "./components/ContextMenu"
+import React from "react"
 
 const DesignEditor = () => {
   const editorType = useEditorType()
@@ -15,13 +16,12 @@ const DesignEditor = () => {
     <>
       {displayPreview && <Preview isOpen={displayPreview} setIsOpen={setDisplayPreview} />}
       {
-        // {
-        //   NONE: <SelectEditor />,
-        //   PRESENTATION: <PresentationEditor />,
-        //   VIDEO: <VideoEditor />,
-        //   GRAPHIC: <GraphicEditor />,
-        // }[editorType]
-        <GraphicEditor />
+        {
+          NONE: <SelectEditor />,
+          PRESENTATION: <PresentationEditor />,
+          VIDEO: <VideoEditor />,
+          GRAPHIC: <GraphicEditor />,
+        }[editorType]
       }
     </>
   )

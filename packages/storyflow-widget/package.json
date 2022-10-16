@@ -9,6 +9,7 @@
     "dev": "webpack serve --port 6010",
     "watch": "webpack --watch",
     "build": "webpack --mode=production",
+    "tsc": "tsc --pretty --noEmit",
     "prepublishOnly": "npm run tsc && npm run build"
   },
   "devDependencies": {

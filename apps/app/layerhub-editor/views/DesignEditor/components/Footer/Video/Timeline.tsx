@@ -13,7 +13,7 @@ import TimeMarker from "./TimeMarker"
 import TimelineControl from "./TimelineControl"
 import TimelineContextMenu from "./TimelineContextMenu"
 import useContextMenuTimelineRequest from "../../../../../hooks/useContextMenuTimelineRequest"
-import { findSceneIndexByTime } from "../../../../../views/DesignEditor/utils/scenes"
+import { findSceneIndexByTime } from "../../../utils/scenes"
 
 const Timeline = () => {
   const { time, setTime, status } = useTimer()

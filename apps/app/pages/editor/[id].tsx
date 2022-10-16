@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@styles/Editor.module.css';
-import Editor from '../../editor';
+import Editor from '../../layerhub-editor';
 
 interface EditorPageProps {
     id: string;

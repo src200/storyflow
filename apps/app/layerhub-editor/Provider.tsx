@@ -2,7 +2,7 @@ import React from "react"
 import { Provider as ScenifyProvider } from "@layerhub-io/react"
 import { BaseProvider, LightTheme } from "baseui"
 import { store } from "./store/store"
-import { Provider as ReduxProvier } from "react-redux"
+import { Provider as ReduxProvider } from "react-redux"
 import { AppProvider } from "./contexts/AppContext"
 import { DesignEditorProvider } from "./contexts/DesignEditor"
 import { I18nextProvider } from "react-i18next"
@@ -12,7 +12,7 @@ import "./translations"
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ReduxProvier store={store}>
+    <ReduxProvider store={store}>
       <DesignEditorProvider>
         <TimerProvider>
           <AppProvider>
@@ -24,7 +24,7 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
           </AppProvider>
         </TimerProvider>
       </DesignEditorProvider>
-    </ReduxProvier>
+    </ReduxProvider>
   )
 }
 

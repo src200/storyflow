@@ -6,13 +6,13 @@ import useEditorType from "../../../../hooks/useEditorType"
 const Footer = () => {
   const editorType = useEditorType()
 
-  return <Graphic />
-  // return {
-  //   NONE: <></>,
-  //   PRESENTATION: <Presentation />,
-  //   VIDEO: <Video />,
-  //   GRAPHIC: <Graphic />,
-  // }[editorType]
+  // return <Graphic />
+  return {
+    NONE: <></>,
+    PRESENTATION: <Presentation />,
+    VIDEO: <Video />,
+    GRAPHIC: <Graphic />,
+  }[editorType]
 }
 
 export default Footer

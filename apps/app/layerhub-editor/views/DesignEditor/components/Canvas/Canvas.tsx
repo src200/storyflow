@@ -5,7 +5,8 @@ import useDesignEditorContext from "../../../../hooks/useDesignEditorContext"
 import ContextMenu from "../ContextMenu"
 
 const Canvas = () => {
-  const { displayPlayback } = useDesignEditorContext()
+  const { displayPlayback } = useDesignEditorContext();
+
   return (
     <div style={{ flex: 1, display: "flex", position: "relative" }}>
       {displayPlayback && <Playback />}
@@ -14,11 +15,11 @@ const Canvas = () => {
         config={{
           background: "#f1f2f6",
           controlsPosition: {
-            rotation: "BOTTOM",
+            rotation: "TOP",
           },
           shadow: {
-            blur: 4,
-            color: "#fcfcfc",
+            blur: 2,
+            color: "#bdc3c7",
             offsetX: 0,
             offsetY: 0,
           },
