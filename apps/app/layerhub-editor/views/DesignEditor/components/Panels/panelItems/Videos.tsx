@@ -66,7 +66,7 @@ const Videos = () => {
   }
 
   const loadPexelsVideos = async () => {
-    const videos = (await getPexelsVideos("people")) as any
+    const videos = (await getPexelsVideos("vertical-videos")) as any
     setVideos(videos)
   }
   React.useEffect(() => {

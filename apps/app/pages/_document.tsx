@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import React from 'react';
 import { Provider as StyletronProvider } from 'styletron-react';
 import { styletron } from '../styletron';
 
@@ -55,6 +56,7 @@ class MyDocument extends Document {
               key={i}
             />
           ))}
+          <script src="./crisp.js"></script>
         </Head>
         <body>
           <Main />

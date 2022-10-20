@@ -3,13 +3,14 @@ import { useStyletron } from "baseui"
 import { Block } from "baseui/block"
 import AngleDoubleLeft from "../../../../../components/Icons/AngleDoubleLeft"
 import Scrollable from "../../../../../components/Scrollable"
-import { images } from "../../../../../constants/mock-data"
 import { useEditor } from "@layerhub-io/react"
 import useSetIsSidebarOpen from "../../../../../hooks/useSetIsSidebarOpen"
+import { getPexelsImages } from "../../../../../services/pexels"
 
 const Images = () => {
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
+  const [images, setImages] = React.useState<any[]>([])
 
   const addObject = React.useCallback(
     (url: string) => {
@@ -23,6 +24,14 @@ const Images = () => {
     },
     [editor]
   )
+
+  const loadPexelsImages = async () => {
+    const images = (await getPexelsImages("nature")) as any
+    setImages(images)
+  }
+  React.useEffect(() => {
+    loadPexelsImages()
+  }, [])
 
   return (
     <Block $style={{ flex: 1, display: "flex", flexDirection: "column" }}>
@@ -45,7 +54,7 @@ const Images = () => {
         <Block padding="0 1.5rem">
           <div style={{ display: "grid", gap: "8px", gridTemplateColumns: "1fr 1fr" }}>
             {images.map((image, index) => {
-              return <ImageItem key={index} onClick={() => addObject(image.src.large)} preview={image.src.small} />
+              return <ImageItem key={index} onClick={() => addObject(image.src.portrait)} preview={image.src.small} />
             })}
           </div>
         </Block>

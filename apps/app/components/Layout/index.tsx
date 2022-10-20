@@ -8,6 +8,7 @@ import { supabase } from '@supabase/client';
 import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import React from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
