@@ -45,8 +45,8 @@ const Timeline = () => {
         updateCurrentScene(currentScene)
       } else {
         const defaultTemplate = getDefaultTemplate({
-          width: 1200,
-          height: 1200,
+          width: 1080,
+          height: 1920,
         })
 
         editor.scene

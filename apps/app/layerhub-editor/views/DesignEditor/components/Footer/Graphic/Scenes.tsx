@@ -65,8 +65,8 @@ const Scenes = () => {
         updateCurrentScene(currentScene)
       } else {
         const defaultTemplate = getDefaultTemplate({
-          width: 1200,
-          height: 1200,
+          width: 1080,
+          height: 1920,
         })
         setCurrentDesign({
           id: nanoid(),
@@ -199,8 +199,8 @@ const Scenes = () => {
               <div
                 onClick={addScene}
                 className={css({
-                  width: "100px",
-                  height: "56px",
+                  width: "65px",
+                  height: "116px",
                   background: "rgb(243,244,246)",
                   display: "flex",
                   alignItems: "center",
@@ -208,7 +208,7 @@ const Scenes = () => {
                   cursor: "pointer",
                 })}
               >
-                <Add size={20} />
+                <Add size={24} />
               </div>
             </div>
           </SortableContext>

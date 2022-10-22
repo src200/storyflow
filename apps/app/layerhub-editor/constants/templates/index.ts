@@ -6228,7 +6228,7 @@ export const template = {
     },
   ],
   frame: {
-    width: 1200,
-    height: 1200,
+    width: 1080,
+    height: 1920,
   },
 }

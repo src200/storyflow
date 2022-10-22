@@ -175,8 +175,8 @@ class PlaybackController {
    */
   private initializeApplication = () => {
     let app = new PIXI.Application({
-      width: 1200 * this.zoomRatio,
-      height: 1200 * this.zoomRatio,
+      width: 1080 * this.zoomRatio,
+      height: 1920 * this.zoomRatio,
       resizeTo: this.el,
       backgroundColor: 0xffffff,
       backgroundAlpha: 1,

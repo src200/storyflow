@@ -5,7 +5,26 @@ import useDesignEditorContext from "../../../../hooks/useDesignEditorContext"
 import ContextMenu from "../ContextMenu"
 
 const Canvas = () => {
-  const { displayPlayback } = useDesignEditorContext();
+  const { displayPlayback, currentDesign, setCurrentDesign } = useDesignEditorContext();
+  const editor = useEditor()
+  const frame = useFrame()
+
+  React.useEffect(() => {
+    if (editor) {
+      setCurrentDesign({
+        ...currentDesign,
+        frame: {
+          width: parseInt("1080"),
+          height: parseInt("1920"),
+        },
+      });
+
+      editor.frame.resize({
+        width: parseInt("1080"),
+        height: parseInt("1920"),
+      });
+    }
+  }, [frame]);
 
   return (
     <div style={{ flex: 1, display: "flex", position: "relative" }}>

@@ -60,10 +60,10 @@ const Customize = () => {
       </Block>
       <Scrollable>
         <Block padding="0 1.5rem">
-          <Block>
+          {/* <Block>
             <ResizeTemplate />
             <Block $style={{ fontSize: "14px", textAlign: "center", paddingTop: "0.35rem" }}>1080 x 1920px</Block>
-          </Block>
+          </Block> */}
 
           <Block paddingTop="0.5rem">
             <div
@@ -163,6 +163,7 @@ const Customize = () => {
   )
 }
 
+// eslint-disable-next-line no-unused-vars
 const ResizeTemplate = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [activeKey, setActiveKey] = React.useState<string | number>("0")
