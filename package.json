@@ -26,10 +26,11 @@
   "packageManager": "pnpm@7.13.4",
   "lint-staged": {
     "*.{tsx, ts}": [
-      "pnpm run tsc && pnpm run lint --fix --quiet"
+      "eslint --fix --quiet",
+      "npx tsc --noEmit"
     ],
     "*.{jsx, js}": [
-      "pnpm run lint --fix --quiet"
+      "eslint --fix --quiet"
     ]
   }
 }

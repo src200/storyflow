@@ -1,5 +1,5 @@
 /* eslint-disable baseui/no-block-style */
-import React from "react"
+import React from " react"
 import { Button, SIZE } from "baseui/button"
 import { HexColorPicker } from "react-colorful"
 import { StatefulPopover, PLACEMENT } from "baseui/popover"
