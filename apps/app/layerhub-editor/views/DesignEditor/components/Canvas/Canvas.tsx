@@ -1,5 +1,5 @@
 import React from "react"
-import { Canvas as LayerhubCanvas, useEditor, useFrame } from "@layerhub-io/react"
+import { Canvas as LayerhubCanvas, useEditor } from "@layerhub-io/react"
 import Playback from "../Playback"
 import useDesignEditorContext from "../../../../hooks/useDesignEditorContext"
 import ContextMenu from "../ContextMenu"
@@ -7,7 +7,6 @@ import ContextMenu from "../ContextMenu"
 const Canvas = () => {
   const { displayPlayback, currentDesign, setCurrentDesign } = useDesignEditorContext();
   const editor = useEditor()
-  const frame = useFrame()
 
   React.useEffect(() => {
     if (editor) {
@@ -24,7 +23,7 @@ const Canvas = () => {
         height: parseInt("1920"),
       });
     }
-  }, [frame]);
+  }, []);
 
   return (
     <div style={{ flex: 1, display: "flex", position: "relative" }}>
