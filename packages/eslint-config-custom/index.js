@@ -3,6 +3,7 @@ module.exports = {
     "next",
     "turbo",
     "prettier",
+    "eslint:recommended",
     "plugin:baseui/recommended"
   ],
   rules: {
