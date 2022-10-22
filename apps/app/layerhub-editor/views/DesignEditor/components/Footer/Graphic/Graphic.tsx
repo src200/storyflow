@@ -12,7 +12,7 @@ const Graphic = () => {
   return (
     <Container>
       <Scenes />
-      <Common />
+      {/* <Common /> */}
     </Container>
   )
 }

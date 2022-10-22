@@ -1,3 +1,4 @@
+/* eslint-disable baseui/no-block-style */
 import React from "react"
 import { Block } from "baseui/block"
 import { Button } from "baseui/button"

@@ -1,3 +1,4 @@
+/* eslint-disable baseui/no-block-style */
 import { useStyletron, styled } from "baseui"
 import { BASE_ITEMS, VIDEO_PANEL_ITEMS } from "../../../../constants/app-options"
 import useAppContext from "../../../../hooks/useAppContext"
@@ -7,6 +8,7 @@ import useSetIsSidebarOpen from "../../../../hooks/useSetIsSidebarOpen"
 import useEditorType from "../../../../hooks/useEditorType"
 import Scrollable from "../../../../components/Scrollable"
 import { Block } from "baseui/block"
+import React from "react"
 
 const Container = styled("div", (props) => ({
   width: "80px",

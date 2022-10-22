@@ -28,6 +28,7 @@ const PanelsList = () => {
   const Component = panelItems[state.panel]
 
   return (
+    // eslint-disable-next-line baseui/no-block-style
     <Block
       id="EditorPanelItem"
       $style={{

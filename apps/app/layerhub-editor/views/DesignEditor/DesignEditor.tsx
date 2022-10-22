@@ -16,12 +16,13 @@ const DesignEditor = () => {
     <>
       {displayPreview && <Preview isOpen={displayPreview} setIsOpen={setDisplayPreview} />}
       {
-        {
-          NONE: <SelectEditor />,
-          PRESENTATION: <PresentationEditor />,
-          VIDEO: <VideoEditor />,
-          GRAPHIC: <GraphicEditor />,
-        }[editorType]
+        // {
+        //   NONE: <SelectEditor />,
+        //   PRESENTATION: <PresentationEditor />,
+        //   VIDEO: <VideoEditor />,
+        //   GRAPHIC: <GraphicEditor />,
+        // }[editorType]
+        <GraphicEditor />
       }
     </>
   )

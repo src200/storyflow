@@ -1,5 +1,6 @@
 import { useActiveObject, useContextMenuRequest, useEditor } from "@layerhub-io/react"
 import { useStyletron } from "baseui"
+import React from "react"
 import BringToFront from "../../../../components/Icons/BringToFront"
 import Delete from "../../../../components/Icons/Delete"
 import Duplicate from "../../../../components/Icons/Duplicate"
@@ -48,7 +49,7 @@ const ContextMenu = () => {
             editor.cancelContextMenuRequest()
           }}
           icon="Duplicate"
-          label="copy"
+          label="Copy"
         >
           <Duplicate size={24} />
         </ContextMenuItem>
@@ -58,7 +59,7 @@ const ContextMenu = () => {
             editor.cancelContextMenuRequest()
           }}
           icon="Paste"
-          label="paste"
+          label="Paste"
         >
           <Paste size={24} />
         </ContextMenuItem>
@@ -69,7 +70,7 @@ const ContextMenu = () => {
             editor.cancelContextMenuRequest()
           }}
           icon="Delete"
-          label="delete"
+          label="Delete"
         >
           <Delete size={24} />
         </ContextMenuItem>
@@ -99,7 +100,7 @@ const ContextMenu = () => {
               editor.cancelContextMenuRequest()
             }}
             icon="Duplicate"
-            label="copy"
+            label="Copy"
           >
             <Duplicate size={24} />
           </ContextMenuItem>
@@ -109,7 +110,7 @@ const ContextMenu = () => {
               editor.cancelContextMenuRequest()
             }}
             icon="Paste"
-            label="paste"
+            label="Paste"
           >
             <Paste size={24} />
           </ContextMenuItem>
@@ -119,7 +120,7 @@ const ContextMenu = () => {
               editor.cancelContextMenuRequest()
             }}
             icon="Delete"
-            label="delete"
+            label="Delete"
           >
             <Delete size={24} />
           </ContextMenuItem>
@@ -130,7 +131,7 @@ const ContextMenu = () => {
               editor.cancelContextMenuRequest()
             }}
             icon="Forward"
-            label="bring forward"
+            label="Bring forward"
           >
             <BringToFront size={24} />
           </ContextMenuItem>
@@ -140,7 +141,7 @@ const ContextMenu = () => {
               editor.cancelContextMenuRequest()
             }}
             icon="Backward"
-            label="send backward"
+            label="Send backward"
           >
             <SendToBack size={24} />
           </ContextMenuItem>
@@ -161,7 +162,7 @@ const ContextMenu = () => {
               editor.cancelContextMenuRequest()
             }}
             icon="Locked"
-            label="lock"
+            label="Lock"
           >
             <Locked size={24} />
           </ContextMenuItem>
@@ -200,7 +201,7 @@ const ContextMenu = () => {
               editor.cancelContextMenuRequest()
             }}
             icon="Unlocked"
-            label="unlock"
+            label="Unlock"
           >
             <Unlocked size={24} />
           </ContextMenuItem>

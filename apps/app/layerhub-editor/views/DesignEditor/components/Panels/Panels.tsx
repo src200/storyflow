@@ -1,3 +1,4 @@
+import React from "react"
 import PanelItem from "./PanelItem"
 import PanelsList from "./PanelsList"
 
