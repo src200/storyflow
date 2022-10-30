@@ -4,7 +4,6 @@ import Canvas from "./components/Canvas"
 import Footer from "./components/Footer"
 import Toolbox from "./components/Toolbox"
 import EditorContainer from "./components/EditorContainer"
-import ContextMenu from "./components/ContextMenu"
 import React from "react"
 
 const GraphicEditor = () => {

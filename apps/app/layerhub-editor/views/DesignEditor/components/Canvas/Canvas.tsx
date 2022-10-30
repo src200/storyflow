@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Canvas as LayerhubCanvas, useEditor } from "@layerhub-io/react"
 import Playback from "../Playback"
 import useDesignEditorContext from "../../../../hooks/useDesignEditorContext"
@@ -8,7 +8,7 @@ const Canvas = () => {
   const { displayPlayback, currentDesign, setCurrentDesign } = useDesignEditorContext();
   const editor = useEditor()
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (editor) {
       setCurrentDesign({
         ...currentDesign,

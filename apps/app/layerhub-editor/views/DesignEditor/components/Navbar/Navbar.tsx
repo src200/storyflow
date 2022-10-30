@@ -1,19 +1,21 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { styled, ThemeProvider, DarkTheme } from "baseui"
 import { Theme } from "baseui/theme"
 import { Button, KIND } from "baseui/button"
 import Logo from "../../../../components/Icons/Logo"
 import useDesignEditorContext from "../../../../hooks/useDesignEditorContext"
+import useRootAppContext from "../../../../../hooks/useRootAppContext";
 import Play from "../../../../components/Icons/Play"
 import { Block } from "baseui/block"
 import { useEditor } from "@layerhub-io/react"
-import useEditorType from "../../../../hooks/useEditorType"
+// import useEditorType from "../../../../hooks/useEditorType"
 import { IScene } from "@layerhub-io/types"
 import { loadTemplateFonts } from "../../../../utils/fonts"
 import { loadVideoEditorAssets } from "../../../../utils/video"
 import DesignTitle from "./DesignTitle"
 import { IDesign } from "../../../../interfaces/DesignEditor"
-import Github from "../../../../components/Icons/Github"
+import { supabase } from '@supabase/client'
+import { toast } from 'react-toastify'
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -26,9 +28,29 @@ const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
 
 const Navbar = () => {
   const { setDisplayPreview, setScenes, setCurrentDesign, currentDesign, scenes } = useDesignEditorContext()
-  const editorType = useEditorType()
+  const { id, user } = useRootAppContext();
   const editor = useEditor()
   const inputFileRef = React.useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    (async (id) => {
+      if (id !== 'new') {
+        const { data, error } = await supabase
+          .from('stories')
+          .select('pages')
+          .eq('id', id);
+
+        if (error) {
+          toast('Something went wrong. Please try again', { type: 'error' });
+        }
+        const template = await loadGraphicTemplate(data[0].pages);
+        //   @ts-ignore
+        setScenes(template.scenes);
+        //   @ts-ignore
+        setCurrentDesign(template.design);
+      }
+    })(id);
+  }, [id]);
 
   const parseGraphicJSON = () => {
     const currentScene = editor.scene.exportToJSON()
@@ -58,103 +80,134 @@ const Navbar = () => {
         metadata: {},
         preview: "",
       }
-      makeDownload(graphicTemplate)
+      // makeDownload(graphicTemplate)
+      saveChanges(graphicTemplate);
     } else {
       console.log("NO CURRENT DESIGN")
     }
   }
 
-  const parsePresentationJSON = () => {
-    const currentScene = editor.scene.exportToJSON()
+  // const parsePresentationJSON = () => {
+  //   const currentScene = editor.scene.exportToJSON()
 
-    const updatedScenes = scenes.map((scn) => {
-      if (scn.id === currentScene.id) {
-        return {
-          id: currentScene.id,
-          duration: 5000,
-          layers: currentScene.layers,
-          name: currentScene.name,
-        }
-      }
-      return {
-        id: scn.id,
-        duration: 5000,
-        layers: scn.layers,
-        name: scn.name,
-      }
-    })
+  //   const updatedScenes = scenes.map((scn) => {
+  //     if (scn.id === currentScene.id) {
+  //       return {
+  //         id: currentScene.id,
+  //         duration: 5000,
+  //         layers: currentScene.layers,
+  //         name: currentScene.name,
+  //       }
+  //     }
+  //     return {
+  //       id: scn.id,
+  //       duration: 5000,
+  //       layers: scn.layers,
+  //       name: scn.name,
+  //     }
+  //   })
 
-    if (currentDesign) {
-      const presentationTemplate: IDesign = {
-        id: currentDesign.id,
-        type: "PRESENTATION",
-        name: currentDesign.name,
-        frame: currentDesign.frame,
-        scenes: updatedScenes,
-        metadata: {},
-        preview: "",
-      }
-      makeDownload(presentationTemplate)
+  //   if (currentDesign) {
+  //     const presentationTemplate: IDesign = {
+  //       id: currentDesign.id,
+  //       type: "PRESENTATION",
+  //       name: currentDesign.name,
+  //       frame: currentDesign.frame,
+  //       scenes: updatedScenes,
+  //       metadata: {},
+  //       preview: "",
+  //     }
+  //     makeDownload(presentationTemplate)
+  //   } else {
+  //     console.log("NO CURRENT DESIGN")
+  //   }
+  // }
+
+  // const parseVideoJSON = () => {
+  //   const currentScene = editor.scene.exportToJSON()
+  //   const updatedScenes = scenes.map((scn) => {
+  //     if (scn.id === currentScene.id) {
+  //       return {
+  //         id: scn.id,
+  //         duration: scn.duration,
+  //         layers: currentScene.layers,
+  //         name: currentScene.name ? currentScene.name : "",
+  //       }
+  //     }
+  //     return {
+  //       id: scn.id,
+  //       duration: scn.duration,
+  //       layers: scn.layers,
+  //       name: scn.name ? scn.name : "",
+  //     }
+  //   })
+  //   if (currentDesign) {
+  //     const videoTemplate: IDesign = {
+  //       id: currentDesign.id,
+  //       type: "VIDEO",
+  //       name: currentDesign.name,
+  //       frame: currentDesign.frame,
+  //       scenes: updatedScenes,
+  //       metadata: {},
+  //       preview: "",
+  //     }
+  //     makeDownload(videoTemplate)
+  //   } else {
+  //     console.log("NO CURRENT DESIGN")
+  //   }
+  // }
+
+  // const makeDownload = (data: Object) => {
+  //   const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`
+  //   const a = document.createElement("a")
+  //   a.href = dataStr
+  //   a.download = "template.json"
+  //   a.click()
+  // }
+
+  const saveChanges = async (metadata: IDesign) => {
+    const storyPayload = {
+      name: metadata.name,
+      description: '',
+      pages: metadata,
+      user_id: user?.id,
+    };
+
+    let response;
+    if (id !== 'new') {
+      const toBeUpdatedPayload = {
+        id,
+        ...storyPayload
+      };
+
+      response = await supabase.from('stories').update(toBeUpdatedPayload).match({ id });
     } else {
-      console.log("NO CURRENT DESIGN")
+      response = await supabase.from('stories').insert(storyPayload);
     }
-  }
 
-  const parseVideoJSON = () => {
-    const currentScene = editor.scene.exportToJSON()
-    const updatedScenes = scenes.map((scn) => {
-      if (scn.id === currentScene.id) {
-        return {
-          id: scn.id,
-          duration: scn.duration,
-          layers: currentScene.layers,
-          name: currentScene.name ? currentScene.name : "",
-        }
-      }
-      return {
-        id: scn.id,
-        duration: scn.duration,
-        layers: scn.layers,
-        name: scn.name ? scn.name : "",
-      }
-    })
-    if (currentDesign) {
-      const videoTemplate: IDesign = {
-        id: currentDesign.id,
-        type: "VIDEO",
-        name: currentDesign.name,
-        frame: currentDesign.frame,
-        scenes: updatedScenes,
-        metadata: {},
-        preview: "",
-      }
-      makeDownload(videoTemplate)
+
+    if (response && response.data) {
+      toast.success(`Story ${id !== 'new' ? 'updated' : 'created'} successfully`);
     } else {
-      console.log("NO CURRENT DESIGN")
+      toast('Something went wrong. Please try again', { type: 'error' });
     }
-  }
-
-  const makeDownload = (data: Object) => {
-    const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(data))}`
-    const a = document.createElement("a")
-    a.href = dataStr
-    a.download = "template.json"
-    a.click()
   }
 
   const makeDownloadTemplate = async () => {
-    if (editor) {
-      if (editorType === "GRAPHIC") {
-        return parseGraphicJSON()
-      } else if (editorType === "PRESENTATION") {
-        return parsePresentationJSON()
-      } else {
-        return parseVideoJSON()
-      }
-    }
+    return parseGraphicJSON()
+    // if (editor) {
+    //   if (editorType === "GRAPHIC") {
+    //     return parseGraphicJSON()
+    //   } else if (editorType === "PRESENTATION") {
+    //     return parsePresentationJSON()
+    //   } else {
+    //     return parseVideoJSON()
+    //   }
+    // }
   }
 
   const loadGraphicTemplate = async (payload: IDesign) => {
+    console.log(payload)
     const scenes = []
     const { scenes: scns, ...design } = payload
 
@@ -169,8 +222,9 @@ const Navbar = () => {
       const loadedScene = await loadVideoEditorAssets(scene)
       await loadTemplateFonts(loadedScene)
 
-      const preview = (await editor.renderer.render(loadedScene)) as string
-      scenes.push({ ...loadedScene, preview })
+      // const preview = (await editor.renderer.render(loadedScene)) as string
+      //   @ts-ignore
+      scenes.push({ ...loadedScene })
     }
 
     return { scenes, design }

@@ -13,7 +13,7 @@ import { getYoutubeId } from '@utils/index';
 
 interface CreateProps {
     user: User;
-};
+}
 
 interface MediaOptions {
     readonly value: string;

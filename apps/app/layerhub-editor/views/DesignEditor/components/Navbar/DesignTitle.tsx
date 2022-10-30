@@ -1,3 +1,4 @@
+/* eslint-disable baseui/no-block-style */
 import React from "react"
 import { Input } from "baseui/input"
 import { Block } from "baseui/block"
@@ -11,7 +12,7 @@ interface State {
 }
 
 const DesignTitle = () => {
-  const [state, setState] = React.useState<State>({ name: "My first design.", width: 0 })
+  const [state, setState] = React.useState<State>({ name: "My first story.", width: 0 })
   const { currentDesign, setCurrentDesign } = useDesignEditorContext()
   const inputTitleRef = React.useRef<Input>(null)
   const spanRef = React.useRef<HTMLDivElement | null>(null)

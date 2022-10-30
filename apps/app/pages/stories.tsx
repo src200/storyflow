@@ -9,10 +9,12 @@ import Card from '@components/Card';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { CopyBlock, atomOneLight } from "react-code-blocks";
+import React from 'react';
+import { useRouter } from 'next/router';
 
 interface StoryProps {
     user: User;
-};
+}
 
 interface Story {
     id: string;
@@ -20,16 +22,17 @@ interface Story {
     description: string;
     url: string;
     user_id: string;
-};
+}
 
 export default function Stories({ user }: StoryProps) {
     const [fetching, setFetching] = useState<boolean>(false);
     const [stories, setStories] = useState<Story[]>([]);
+    const router = useRouter();
 
     const fetchStories = async () => {
         setFetching(true);
         setStories([]);
-        const { data, error } = await supabase.from('stories').select('*').match({ user_id: user.id });;
+        const { data, error } = await supabase.from('stories').select('*').match({ user_id: user.id });
 
         if (data) {
             setStories(data);
@@ -52,12 +55,12 @@ export default function Stories({ user }: StoryProps) {
         }
     };
 
-    const updateStory = async (story_id: string, name: string, description: string, url: string) => {
-        const { data, error } = await supabase.from('stories').update({ name, description, url }).match({ id: story_id });
-        if (error) {
-            console.error(error);
-        }
-    };
+    // const updateStory = async (story_id: string, name: string, description: string, url: string) => {
+    //     const { data, error } = await supabase.from('stories').update({ name, description, url }).match({ id: story_id });
+    //     if (error) {
+    //         console.error(error);
+    //     }
+    // };
 
     useEffect(() => {
         fetchStories();
@@ -84,8 +87,8 @@ export default function Stories({ user }: StoryProps) {
                         url={story.url}
                         id={story.id}
                         cardActions={[
+                            { name: 'Edit', action: () => router.push(`editor/${story.id}`) },
                             { name: 'Delete', action: () => removeStory(story.id) },
-                            // { name: 'Update', action: () => updateStory(story.id) }
                         ]} />
                 ))}
             </div>
