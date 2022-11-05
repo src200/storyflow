@@ -1,30 +1,32 @@
 import React from "react"
 import { Block } from "baseui/block"
 import { useEditor } from "@layerhub-io/react"
+import InnerHTML from 'dangerously-set-html-content'
+import previewAMPhtml from '@lib/previewAMPhtml';
+import useDesignEditorContext from "../../../../hooks/useDesignEditorContext"
 
 const Graphic = () => {
   const editor = useEditor()
+  const { scenes } = useDesignEditorContext()
   const [loading, setLoading] = React.useState(true)
-  const [state, setState] = React.useState({
-    image: "",
-  })
-
+  const [state, setState] = React.useState('')
   const makePreview = React.useCallback(async () => {
     if (editor) {
-      const template = editor.scene.exportToJSON()
-      const image = (await editor.renderer.render(template)) as string
-      setState({ image })
+      const promises = scenes.map(async (scene) => (await editor.renderer.render(scene)) as string);
+      const images = await Promise.all(promises);
+      const previewAMP = previewAMPhtml(images)
+      setState(previewAMP)
       setLoading(false)
     }
-  }, [editor])
+  }, [editor, scenes])
 
   React.useEffect(() => {
     makePreview()
   }, [editor])
 
   return (
-    <Block $style={{ flex: 1, alignItems: "center", justifyContent: "center", display: "flex", padding: "5rem" }}>
-      {!loading && <img width="auto" height="100%" src={state.image} />}
+    <Block>
+      {!loading && <InnerHTML html={state} />}
     </Block>
   )
 }

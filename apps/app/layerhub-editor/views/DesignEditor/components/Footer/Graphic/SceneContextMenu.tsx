@@ -44,7 +44,7 @@ const SceneContextMenu = () => {
         id: nanoid(),
         frame: defaultTemplate.frame,
         metadata: {},
-        name: "Untitled Design",
+        name: "Untitled Story",
         preview: "",
         scenes: [],
         type: "VIDEO",
@@ -55,8 +55,6 @@ const SceneContextMenu = () => {
       setScenes([{ ...initialDesign, preview: preview, duration: 5000 }])
     }
   }
-
-  const makeAddScene = () => { }
 
   const makeDuplicateScene = () => {
     const currentScene = scenes.find((scene) => scene.id === contextMenuTimelineRequest.id)

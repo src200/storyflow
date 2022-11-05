@@ -57,7 +57,7 @@ const Timeline = () => {
               id: nanoid(),
               frame: defaultTemplate.frame,
               metadata: {},
-              name: "Untitled Design",
+              name: "Untitled Story",
               preview: "",
               scenes: [],
               type: "VIDEO",

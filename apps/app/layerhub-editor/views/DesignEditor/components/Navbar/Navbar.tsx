@@ -16,6 +16,7 @@ import DesignTitle from "./DesignTitle"
 import { IDesign } from "../../../../interfaces/DesignEditor"
 import { supabase } from '@supabase/client'
 import { toast } from 'react-toastify'
+import { useRouter } from "next/router"
 
 const Container = styled<"div", {}, Theme>("div", ({ $theme }) => ({
   height: "64px",
@@ -30,11 +31,12 @@ const Navbar = () => {
   const { setDisplayPreview, setScenes, setCurrentDesign, currentDesign, scenes } = useDesignEditorContext()
   const { id, user } = useRootAppContext();
   const editor = useEditor()
+  const router = useRouter();
   const inputFileRef = React.useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    (async (id) => {
-      if (id !== 'new') {
+    (async (id, editor) => {
+      if (id !== 'new' && editor) {
         const { data, error } = await supabase
           .from('stories')
           .select('pages')
@@ -49,8 +51,8 @@ const Navbar = () => {
         //   @ts-ignore
         setCurrentDesign(template.design);
       }
-    })(id);
-  }, [id]);
+    })(id, editor);
+  }, [id, editor]);
 
   const parseGraphicJSON = () => {
     const currentScene = editor.scene.exportToJSON()
@@ -187,6 +189,7 @@ const Navbar = () => {
 
 
     if (response && response.data) {
+      router.push('/stories');
       toast.success(`Story ${id !== 'new' ? 'updated' : 'created'} successfully`);
     } else {
       toast('Something went wrong. Please try again', { type: 'error' });
@@ -207,7 +210,6 @@ const Navbar = () => {
   }
 
   const loadGraphicTemplate = async (payload: IDesign) => {
-    console.log(payload)
     const scenes = []
     const { scenes: scns, ...design } = payload
 
@@ -222,9 +224,9 @@ const Navbar = () => {
       const loadedScene = await loadVideoEditorAssets(scene)
       await loadTemplateFonts(loadedScene)
 
-      // const preview = (await editor.renderer.render(loadedScene)) as string
+      const preview = (await editor?.renderer.render(loadedScene)) as string
       //   @ts-ignore
-      scenes.push({ ...loadedScene })
+      scenes.push({ ...loadedScene, preview })
     }
 
     return { scenes, design }
@@ -291,9 +293,9 @@ const Navbar = () => {
     [editor]
   )
 
-  const handleInputFileRefClick = () => {
-    inputFileRef.current?.click()
-  }
+  // const handleInputFileRefClick = () => {
+  //   inputFileRef.current?.click()
+  // }
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0]
@@ -329,7 +331,7 @@ const Navbar = () => {
             ref={inputFileRef}
             style={{ display: "none" }}
           />
-          <Button
+          {/* <Button
             size="compact"
             onClick={handleInputFileRefClick}
             kind={KIND.tertiary}
@@ -342,7 +344,7 @@ const Navbar = () => {
             }}
           >
             Import
-          </Button>
+          </Button> */}
 
           <Button
             size="compact"
@@ -356,7 +358,7 @@ const Navbar = () => {
               },
             }}
           >
-            Export
+            Save
           </Button>
           <Button
             size="compact"

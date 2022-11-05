@@ -1,17 +1,17 @@
 import React from "react"
 import { Modal, ModalBody, SIZE, ROLE } from "baseui/modal"
-import useEditorType from "../../../../hooks/useEditorType"
+// import useEditorType from "../../../../hooks/useEditorType"
 import { Block } from "baseui/block"
-import Video from "./Video"
-import Presentation from "./Presentation"
+// import Video from "./Video"
+// import Presentation from "./Presentation"
 import Graphic from "./Graphic"
 
 interface ComponentProps {
   isOpen: boolean
+  // eslint-disable-next-line no-unused-vars
   setIsOpen: (v: boolean) => void
 }
 const Preview = ({ isOpen, setIsOpen }: ComponentProps) => {
-  const editorType = useEditorType()
   return (
     <Modal
       onClose={() => setIsOpen(false)}
@@ -62,14 +62,15 @@ const Preview = ({ isOpen, setIsOpen }: ComponentProps) => {
             display: "flex",
           }}
         >
-          {
+          {/* {
             {
               GRAPHIC: <Graphic />,
               PRESENTATION: <Presentation />,
               VIDEO: <Video />,
               NONE: <></>,
             }[editorType]
-          }
+          } */}
+          <Graphic />
         </Block>
       </ModalBody>
     </Modal>

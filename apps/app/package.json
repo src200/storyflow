@@ -27,6 +27,7 @@
     "baseui": "^12.0.0",
     "classnames": "^2.3.2",
     "cors": "^2.8.5",
+    "dangerously-set-html-content": "^1.0.9",
     "feather-icons": "^4.28.0",
     "formidable": "^2.0.1",
     "i18next": "^21.8.13",
