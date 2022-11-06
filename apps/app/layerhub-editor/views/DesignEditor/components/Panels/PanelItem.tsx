@@ -37,7 +37,7 @@ const PanelsList = () => {
         flex: "none",
         borderRight: "1px solid #d7d8e3",
         display: "flex",
-        transition: "ease width 0.1s",
+        transition: "ease width 0.3s",
         overflow: "hidden",
       }}
     >

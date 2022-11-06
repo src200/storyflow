@@ -5,6 +5,7 @@ import { styled } from "baseui"
 import Items from "./Items"
 import useAppContext from "../../../../hooks/useAppContext"
 import { ILayer } from "@layerhub-io/types"
+import { Block } from "baseui/block"
 
 const DEFAULT_TOOLBOX = "Canvas"
 
@@ -12,17 +13,11 @@ interface ToolboxState {
   toolbox: string
 }
 
-const Container = styled("div", () => ({
-  boxShadow: "rgb(0 0 0 / 15%) 0px 1px 1px",
-  height: "50px",
-  display: "flex",
-  alignItems: "center"
-}))
-
 const SelectionContainer = styled("div", () => ({
   display: "flex",
+  // flexDirection: "column",
   alignItems: "center",
-  paddingLeft: "12px"
+  // paddingLeft: "12px"
 }))
 
 const Toolbox = () => {
@@ -70,8 +65,21 @@ const Toolbox = () => {
 
   // @ts-ignore
   const Component = Items[state.toolbox]
-
-  return <Container>{Component ? <Component /> : <SelectionContainer>{state.toolbox}</SelectionContainer>}</Container>
+  return (
+    // eslint-disable-next-line baseui/no-block-style
+    <Block
+      $style={{
+        background: "#ffffff",
+        width: Component ? "306px" : 0,
+        flex: "none",
+        borderRight: "1px solid #d7d8e3",
+        display: "flex",
+        transition: "ease width 0.3s",
+        overflow: "hidden",
+      }}
+    >
+      {Component ? <Component /> : <SelectionContainer>{state.toolbox}</SelectionContainer>}
+    </Block>)
 }
 
 export default Toolbox

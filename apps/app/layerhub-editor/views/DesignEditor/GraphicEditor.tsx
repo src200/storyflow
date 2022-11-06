@@ -13,10 +13,10 @@ const GraphicEditor = () => {
       <div style={{ display: "flex", flex: 1 }}>
         <Panels />
         <div style={{ flex: 1, display: "flex", flexDirection: "column", position: "relative" }}>
-          <Toolbox />
           <Canvas />
           <Footer />
         </div>
+        <Toolbox />
       </div>
     </EditorContainer>
   )
