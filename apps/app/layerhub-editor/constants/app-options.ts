@@ -1,32 +1,37 @@
 export const BASE_ITEMS = [
   {
-    id: "templates",
-    name: "Templates",
-  },
-  {
     id: "customize",
     name: "Customize",
   },
   {
-    id: "elements",
-    name: "Elements",
+    id: "text",
+    name: "Text",
   },
   {
     id: "images",
     name: "Images",
   },
   {
-    id: "uploads",
-    name: "Uploads",
+    id: "elements",
+    name: "Elements",
   },
-  {
-    id: "text",
-    name: "Text",
-  },
+  // {
+  //   id: "uploads",
+  //   name: "Uploads",
+  // },
+
   // {
   //   id: "graphics",
   //   name: "Graphics",
   // },
+  {
+    id: "interactive",
+    name: "Interactive",
+  },
+  {
+    id: "templates",
+    name: "Templates",
+  },
 
   // {
   //   id: "pixabay",

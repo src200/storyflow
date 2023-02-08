@@ -1,4 +1,3 @@
-/* eslint-disable baseui/no-block-style */
 import React from "react"
 import { Input } from "baseui/input"
 import { Block } from "baseui/block"

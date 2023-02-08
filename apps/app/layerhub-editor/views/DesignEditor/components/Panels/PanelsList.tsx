@@ -1,4 +1,3 @@
-/* eslint-disable baseui/no-block-style */
 import { useStyletron, styled } from "baseui"
 import { BASE_ITEMS, VIDEO_PANEL_ITEMS } from "../../../../constants/app-options"
 import useAppContext from "../../../../hooks/useAppContext"
@@ -43,7 +42,7 @@ const PanelListItem = ({ label, icon, activePanel, name }: any) => {
   const setIsSidebarOpen = useSetIsSidebarOpen()
   const [css, theme] = useStyletron()
   // @ts-ignore
-  const Icon = Icons[icon]
+  const Icon = icon === 'Interactive' ? Icons['Graphics'] : Icons[icon]
   return (
     <Block
       id="EditorPanelList"

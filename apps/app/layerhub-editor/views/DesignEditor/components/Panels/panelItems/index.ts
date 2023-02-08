@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import TextProperties from "./TextProperties"
 import Text from "./Text"
 import Customize from "./Customize"
@@ -14,6 +15,8 @@ import TextFill from "./TextFill"
 import PathFill from "./PathFill"
 import CanvasFill from "./CanvasFill"
 import TextEffects from "./TextEffects"
+import Interactive from "./Interactive"
+
 export default {
   StaticText: TextProperties,
   Text: Text,
@@ -31,4 +34,5 @@ export default {
   PathFill: PathFill,
   CanvasFill: CanvasFill,
   TextEffects: TextEffects,
+  Interactive: Interactive
 }
