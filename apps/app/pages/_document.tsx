@@ -56,6 +56,7 @@ class MyDocument extends Document {
               key={i}
             />
           ))}
+          <script async src='https://reflio.com/js/reflio.min.js' data-reflio='y74pnhsf9zpvx4j'></script>
           <script src="./crisp.js"></script>
         </Head>
         <body>
